@@ -76,6 +76,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Hapus</button>
+                <a href="{{ route('editpengguna', $item->id) }}" class="btn btn-primary">EDIT</a>
               </form>
             </td>
         </tr>

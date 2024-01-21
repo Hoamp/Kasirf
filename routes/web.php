@@ -26,4 +26,6 @@ Route::controller(PenggunaController::class)->group(function(){
     Route::get('/pengguna','index')->name('pengguna');
     Route::post('/tambahpengguna','create')->name('tambahpengguna');
     Route::delete('/delete/{id}','destroy')->name('delete');
+    Route::get('/editpengguna/{id}', 'edit')->name('editpengguna');
+    Route::put('/updatepengguna/{id}','update')->name('updatepengguna');
 });

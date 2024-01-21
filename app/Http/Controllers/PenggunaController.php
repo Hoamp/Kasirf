@@ -25,7 +25,21 @@ class PenggunaController extends Controller
     public function destroy($id){
         $pengguna = User::findOrFail($id);
         $pengguna->delete();
-        // dd(session('success'));
         return redirect()->route('pengguna')->with('success', 'Data pengguna berhasil dihapus');
     }
+    public function edit($id){
+        $pengguna = User::findOrFail($id);
+        return view('pengguna.edit', compact('pengguna'));
+    }
+    
+    public function update(Request $request, $id){
+        $pengguna = User::findOrFail($id);
+        $pengguna->update([
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'level'     => $request->level,
+        ]);
+        return redirect()->route('pengguna')->with('success','Data pengguna berhasil diperbarui');
+    }
+    
 }

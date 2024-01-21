@@ -33,6 +33,14 @@
           <li class="sidebar-item">
             <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
               <span>
+                <i class="ti ti-list"></i>
+              </span>
+              <span class="hide-menu">Produk</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+              <span>
                 <i class="ti ti-article"></i>
               </span>
               <span class="hide-menu">Pelanggan</span>
@@ -46,14 +54,7 @@
               <span class="hide-menu">Penjualan</span>
             </a>
           </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="/pengguna" aria-expanded="false">
-              <span>
-                <i class="ti ti-user"></i>
-              </span>
-              <span class="hide-menu">Pengguna</span>
-            </a>
-          </li>
+        
           
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -68,11 +69,11 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+            <a class="sidebar-link" href="/pengguna" aria-expanded="false">
               <span>
                 <i class="ti ti-user-plus"></i>
               </span>
-              <span class="hide-menu">Register</span>
+              <span class="hide-menu">Pengguna</span>
             </a>
           </li>
         </ul>
