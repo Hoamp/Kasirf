@@ -15,10 +15,10 @@ class PenggunaController extends Controller
     }
     public function create(Request $request){
         User::create([
-            'name'  => $request->name,
+            'name'      => $request->name,
             'username'  => $request->username,
             'password'  => $request->password,
-            'level'  => $request->level,
+            'level'     => $request->level,
         ]);
         return redirect()->route('pengguna')->with('success','Data pengguna berhasil ditambah');
     }

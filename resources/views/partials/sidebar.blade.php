@@ -31,7 +31,7 @@
             <span class="hide-menu">UI COMPONENTS</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link" href="/produk" aria-expanded="false">
               <span>
                 <i class="ti ti-list"></i>
               </span>
