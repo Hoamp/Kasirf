@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="./index.html" style="display: flex; align-items: center;" class="text-nowrap logo-img">
+        <a href="/" style="display: flex; align-items: center;" class="text-nowrap logo-img">
             <img src="/assets/images/logos/favicon.png" width="35" alt="" />
             <h3 class="mt-2" style="margin-left: 10px; font-weight: bold;">APP KASIR</h3>
         </a>
