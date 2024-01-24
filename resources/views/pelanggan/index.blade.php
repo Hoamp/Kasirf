@@ -44,48 +44,47 @@
     </div>
     </div>
   </div>
-<table class="table shadow mt-2">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nama pelanggan</th>
-        <th scope="col">Alamat</th>
-        <th scope="col">No Telepon</th>
-        <th scope="col">Aksi</th>
+  <table class="table shadow mt-2">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nama pelanggan</th>
+          <th scope="col">Alamat</th>
+          <th scope="col">No Telepon</th>
+          <th scope="col">Aksi</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        @forelse ($pelanggan as $item)          
-            <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ $item->NamaPelanggan }}</td>
-            <td>{{ $item->Alamat }}</td>
-            <td>{{ $item->NoTelepon }}</td>
-            <td class="center">
-              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">HAPUS</button>
-                <a href="{{ route('editpelanggan', $item->PelangganID)}}" class="btn btn-primary">EDIT</a>
-            </form>
-            
-            </td>
         </tr>
-        @empty
-        <div class="alert alert-danger col-12">
-            Data Belum tersedia
-        </div> 
-        @endforelse
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @elseif(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr>
+          @forelse ($pelanggan as $item)          
+              <th scope="row">{{ $loop->iteration }}</th>
+              <td>{{ $item->NamaPelanggan }}</td>
+              <td>{{ $item->Alamat }}</td>
+              <td>{{ $item->NomorTelepon }}</td>
+              <td class="center">
+              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">HAPUS</button>
+                  <a href="{{ route('editpelanggan', $item->PelangganID)}}" class="btn btn-primary">EDIT</a>
+              </form>         
+              </td>
+          </tr>
+          @empty
+          <div class="alert alert-danger col-12">
+              Data Belum tersedia
+          </div> 
+          @endforelse
+          @if(session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+          @elseif(session('error'))
+              <div class="alert alert-danger">
+                  {{ session('error') }}
+              </div>
+          @endif
+      </tbody>
+    </table>
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/delete_pelanggan/{PelangganID}','destroy')->name('delete_pelanggan');
         Route::get('/editpelanggan/{PelangganID}','edit')->name('editpelanggan');
         Route::put('/updatepelanggan/{PelangganID}','update')->name('updatepelanggan');
+    });
+
+    Route::controller(PenjualanController::class)->group(function(){
+        Route::get('/penjualan','index')->name('penjualan');
+        Route::get('/transaksi/{PelangganID}','transaksi')->name('transaksi');
+        Route::get('/a/{PelangganID}','index')->name('a');
     });
     
 });
