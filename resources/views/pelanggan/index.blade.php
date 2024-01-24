@@ -17,22 +17,24 @@
         <form action="/tambahpelanggan" method="POST">
             @csrf
             <div class="modal-body">
-                <div>
-                    <label for="nama" class="form-label">Nama pelanggan</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Masukan nama pelanggan...">
-                </div>
-                <div>
-                    <label for="alamat" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="alamat"  placeholder="Masukan alamat...">
-                </div>
                 <div class="row mt-2">
                     <div class="col">
                         <div class="form-group">
-                            <label for="telp" class="form-label">No Telepon</label>
-                            <input type="text" class="form-control" id="telp" name="telp" placeholder="Masukan no telepon...">
+                            <label for="nama" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama pelanggan...">
+                        </div>
+                    </div>  
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan alamat...">
                         </div>
                     </div>  
                 </div>
+                    <div class="mt-2">
+                        <label for="telp" class="form-label">No Telepon</label>
+                        <input type="text" class="form-control" id="telp" name="telp" placeholder="Masukan no telepon...">
+                    </div>  
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -59,12 +61,13 @@
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $item->NamaPelanggan }}</td>
             <td>{{ $item->Alamat }}</td>
-            <td>{{ $item->NomorTelepon }}</td>
+            <td>{{ $item->NoTelepon }}</td>
             <td class="center">
               <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger">HAPUS</button>
+                <a href="{{ route('editpelanggan', $item->PelangganID)}}" class="btn btn-primary">EDIT</a>
             </form>
             
             </td>
