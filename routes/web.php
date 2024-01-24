@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\PelangganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/produk','index')->name('produk');
         Route::post('/tambahproduk','store')->name('tambahproduk');
         Route::delete('/delete_product/{ProdukID}','destroy')->name('delete_product');
+    });
 
+    Route::controller(PelangganController::class)->group(function(){
+        Route::get('/pelanggan','index')->name('pelanggan');
+        Route::post('/tambahpelanggan','store')->name('tambahpelanggan');
+        Route::delete('/delete_pelanggan/{PelangganID}','destroy')->name('delete_pelanggan');
     });
     
 });

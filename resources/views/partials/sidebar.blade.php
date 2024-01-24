@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link" href="/pelanggan" aria-expanded="false">
               <span>
                 <i class="ti ti-article"></i>
               </span>
