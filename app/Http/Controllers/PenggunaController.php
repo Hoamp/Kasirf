@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Session;
 
 class PenggunaController extends Controller
 {
-    //
+    public function dashboard(){
+        return view('index');
+    }
     public function index(){
         $pengguna = User::all();
         return view('pengguna.index',compact('pengguna'));
@@ -25,7 +27,7 @@ class PenggunaController extends Controller
     public function destroy($id){
         $pengguna = User::findOrFail($id);
         $pengguna->delete();
-        return redirect()->route('pengguna')->with('success', 'Data pengguna berhasil dihapus');
+        return redirect()->route('pengguna')->with('error', 'Data pengguna berhasil dihapus');
     }
     public function edit($id){
         $pengguna = User::findOrFail($id);
@@ -40,6 +42,13 @@ class PenggunaController extends Controller
             'level'     => $request->level,
         ]);
         return redirect()->route('pengguna')->with('success','Data pengguna berhasil diperbarui');
+    }
+    public function reset($id){
+        $pengguna = User::findOrFail($id);
+        $pengguna->update([
+            'password'  => 12345678,
+        ]);
+        return redirect()->route('pengguna')->with('success','Password berhasil direset');
     }
     
 }
