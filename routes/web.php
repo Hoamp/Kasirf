@@ -36,13 +36,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(ProdukController::class)->group(function(){
         Route::get('/produk','index')->name('produk');
         Route::post('/tambahproduk','store')->name('tambahproduk');
-        Route::delete('/delete_product/{ProdukID}','destroy')->name('delete_product');
+        Route::delete('/deleteproduk/{ProdukID}','destroy')->name('deleteproduk');
+        Route::get('/editproduk/{ProdukID}','edit')->name('editproduk');
+        Route::put('/updateproduk/{ProdukID}','update')->name('updateproduk');
     });
 
     Route::controller(PelangganController::class)->group(function(){
         Route::get('/pelanggan','index')->name('pelanggan');
         Route::post('/tambahpelanggan','store')->name('tambahpelanggan');
         Route::delete('/delete_pelanggan/{PelangganID}','destroy')->name('delete_pelanggan');
+        Route::get('/editpelanggan/{PelangganID}','edit')->name('editpelanggan');
+        Route::put('/updatepelanggan/{PelangganID}','update')->name('updatepelanggan');
     });
     
 });
