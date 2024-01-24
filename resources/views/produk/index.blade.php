@@ -69,10 +69,11 @@
             <td>{{ $item->Harga }}</td>
             <td>{{ $item->Stok }}</td>
             <td class="center">
-              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_product', $item->ProdukID) }}" method="POST">
+              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('deleteproduk', $item->ProdukID) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger">HAPUS</button>
+                <a href="{{ route('editproduk',$item->ProdukID)}}" class="btn btn-primary">EDIT</a>
             </form>
             
             </td>
