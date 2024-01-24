@@ -75,8 +75,9 @@
               <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete', $item->id) }}"" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger">HAPUS</button>
                 <a href="{{ route('editpengguna', $item->id) }}" class="btn btn-primary">EDIT</a>
+                <a onclick="return confirm('Apakah anda yakin ingin mereset password ini?')" href="{{ route('resetpassword', $item->id) }}" class="btn btn-success">RESET</a>
               </form>
             </td>
         </tr>
@@ -85,18 +86,16 @@
             Data Belum tersedia
         </div> 
         @endforelse
+        
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
     </tbody>
   </table>
-  <script>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @elseif(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-    @endif
-  </script>
-
 @endsection
