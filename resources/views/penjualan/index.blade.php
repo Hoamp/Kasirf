@@ -88,17 +88,17 @@
       <tr>
         @forelse ($penjualan as $item)          
             <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ $item->NamaPelanggan }}</td>
-            <td>{{ $item->Alamat }}</td>
-            <td>{{ $item->NomorTelepon }}</td>
+            <td>{{ $item->KodePenjualan }}</td>
+            <td>{{ $item->TotalHarga }}</td>
+            <td>{{ $item->PelangganID }}</td>
             <td></td>
             <td class="center">
             {{-- <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">HAPUS</button>
-                <a href="{{ route('editpelanggan', $item->PelangganID)}}" class="btn btn-primary">EDIT</a>
             </form> --}}
+            <a href="{{ route('nota', $item->PenjualanID)}}" class="btn btn-primary">EDIT</a>
             </td>
         </tr>
         @empty

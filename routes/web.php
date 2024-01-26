@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(PenjualanController::class)->group(function(){
         Route::get('/penjualan','index')->name('penjualan');
         Route::get('/transaksi/{PelangganID}','transaksi')->name('transaksi');
-        Route::get('/a/{PelangganID}','index')->name('a');
+        Route::get('/tambahkeranjang/{PelangganID}','tambahkeranjang')->name('tambahkeranjang');
     });
     
 });

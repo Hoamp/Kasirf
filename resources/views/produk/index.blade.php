@@ -66,7 +66,7 @@
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $item->KodeProduk }}</td>
             <td>{{ $item->NamaProduk }}</td>
-            <td>{{ $item->Harga }}</td>
+            <td>{{ rupiah($item->Harga) }}</td>
             <td>{{ $item->Stok }}</td>
             <td class="center">
               <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('deleteproduk', $item->ProdukID) }}" method="POST">
