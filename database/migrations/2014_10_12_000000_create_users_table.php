@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,7 +20,15 @@ return new class extends Migration
             $table->string('level');
             $table->rememberToken();
             $table->timestamps();
+
         });
+        
+        DB::table('users')->insert(array(
+            'name'     => 'pera',
+            'username' => 'pera',
+            'password' => bcrypt('111111'),
+            'level'    => 'kasir'
+        ));
     }
 
     /**
