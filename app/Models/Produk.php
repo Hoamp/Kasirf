@@ -16,4 +16,8 @@ class Produk extends Model
         'Stok',
     ];
     protected $table = 'produks';
+    public function detailPenjualans()
+    {
+        return $this->hasMany(DetailPenjualan::class, 'ProdukID');
+    } 
 }

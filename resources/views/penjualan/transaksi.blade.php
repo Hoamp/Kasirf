@@ -8,12 +8,12 @@
             <p class="card-description">
               Pilih produk yang akan dijual
             </p>
-            <form action="/tambahkeranjang" method="POST">
+            <form action="{{ route('tambahkeranjang', 'PelangganID=> $pelangganId') }}" method="POST">
                 @csrf
                     <div>
                         <label for="" class="form-label">Nama produk</label>
-                        <input type="hidden" name="KodePenjualan" value="{{ $nota }}">
-                        <select name="produk" id="" class="form-control">
+                        <input type="hidden" name="kode_penjualan" value="{{ $nota }}">
+                        <select name="produk_id" id="" class="form-control">
                             @foreach ($produk as $item)
                                 <option value="{{ $item->ProdukID }}">{{ $item->NamaProduk }} - {{ $item->KodeProduk }} ( {{ $item->Stok }})</option>
                             @endforeach
@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <label class="form-label">Nama pelanggan</label>
-                        <input type="text" class="form-control" value="{{ $pelanggan->find($PelangganID)->NamaPelanggan }}" readonly>
+                        {{-- <input type="text" class="form-control" value="{{ $pelanggan->find($PelangganID)->NamaPelanggan }}" readonly> --}}
                     </div>
                 <div class="modal-footer">
                 <button type="submit" class="btn btn-primary mt-2">Save changes</button>
@@ -74,25 +74,25 @@
               </tr>
           </thead>
           <tbody>
-              @forelse ($penjualan as $penjualanItem)
-                  @foreach ($penjualanItem->detailProduks as $index => $detailProduk)
-                      <tr>
-                          <td>{{ $index + 1 }}</td>
-                          <td>{{ $detailProduk->produk->KodeProduk }}</td>
-                          <td>{{ $detailProduk->produk->NamaProduk }}</td>
-                          <td>{{ $detailProduk->Jumlah }}</td>
-                          <td>{{ $detailProduk->produk->Harga }}</td>
-                          <td>{{ $detailProduk->Jumlah * $detailProduk->produk->Harga }}</td>
-                          <td class="center">
-                              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button type="submit" class="btn btn-danger">HAPUS</button>
-                                  <a href="{{ route('editpelanggan', $item->PelangganID)}}" class="btn btn-primary">EDIT</a>
-                              </form>
-                          </td>
-                      </tr>
-                  @endforeach
+            @forelse ($penjualan as $penjualanItem)
+            @foreach ($penjualanItem->detailProduks as $index => $detailProduk)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $detailProduk->produk->KodeProduk }}</td>
+                    <td>{{ $detailProduk->produk->NamaProduk }}</td>
+                    <td>{{ $detailProduk->Jumlah }}</td>
+                    <td>{{ $detailProduk->produk->Harga }}</td>
+                    <td>{{ $detailProduk->Jumlah * $detailProduk->produk->Harga }}</td>
+                    <td>
+                        <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $penjualanItem->PelangganID) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">HAPUS</button>
+                            <a href="{{ route('editpelanggan', $penjualanItem->PelangganID)}}" class="btn btn-primary">EDIT</a>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
               @empty
                   <tr>
                       <td colspan="7" class="text-center">
@@ -102,6 +102,15 @@
                       </td>
                   </tr>
               @endforelse
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @elseif(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
           </tbody>
       </table>
       </div>

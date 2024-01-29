@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('ProdukID');
             $table->string('KodeProduk',20);
             $table->string('NamaProduk');
-            $table->decimal('Harga',10,2);
+            $table->decimal('Harga',10,2)->nullable;
             $table->integer('Stok');
             $table->timestamps();
         });

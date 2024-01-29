@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('detail_penjualans', function (Blueprint $table) {
             $table->id('DetailID');
-            $table->unsignedBigInteger('PenjualanID');
-            $table->unsignedBigInteger('ProdukID');
             $table->unsignedBigInteger('KodePenjualan');
-            $table->unsignedBigInteger('JumlahProduk');
+            $table->unsignedBigInteger('ProdukID');
+            $table->unsignedBigInteger('Jumlah');
             $table->decimal('Subtotal',10,2);
             $table->timestamps();
         });

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailPenjualan;
 use App\Models\Produk;
 use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\DetailPenjualan;
 
 class PenjualanController extends Controller
 {
@@ -28,12 +29,43 @@ class PenjualanController extends Controller
         $pelanggan = Pelanggan::all();
         return view('penjualan.transaksi', compact('produk', 'penjualan', 'pelanggan', 'tanggal', 'jumlah', 'nota', 'PelangganID'));
     }
-    public function tambahkeranjang(){
-        DetailPenjualan::create([
-            'name'      => $request->name,
-            'username'  => $request->username,
-            'password'  => $request->password,
-            'level'     => $request->level,
-        ]);
-    } 
-}
+    
+    public function tambahkeranjang(Request $request, $PelangganID) {
+        $produk = Produk::where('ProdukID', $request->produk_id)->first();
+    
+        // Check if $produk is not null before accessing its properties
+        if ($produk) {
+            $harga = $produk->Harga;
+            $stok_lama = $produk->Stok;
+            $stok_sekarang = $stok_lama - $request->jumlah;
+            $sub_total = $request->jumlah * $harga;
+    
+            $data = [
+                'KodePenjualan' => $request->kode_penjualan,
+                'ProdukID'      => $request->produk_id,
+                'Jumlah'        => $request->jumlah,
+                'Subtotal'      => $sub_total,
+                'PelangganID'   => $PelangganID,
+            ];
+    
+            DetailPenjualan::create($data);
+    
+            $data2 = [
+                'Stok' => $stok_sekarang,
+            ];
+    
+            $where = ['ProdukID' => $request->produk_id];
+    
+            Produk::where($where)->update($data2);
+    
+            $penjualan = Penjualan::with('detailPenjualans')->where('PelangganID', $PelangganID)->get();
+    
+            return redirect()->route('transaksi', ['PelangganID' => $PelangganID])->with(compact('penjualan'))->with('success', 'Data produk berhasil ditambah');
+        } else {
+            // Handle the case where $produk is null, for example, redirect with an error message.
+            return redirect()->route('transaksi', ['PelangganID' => $PelangganID])->with('error', 'Produk not found');
+        }
+    }
+    
+
+}    
