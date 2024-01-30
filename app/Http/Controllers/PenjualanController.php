@@ -27,13 +27,16 @@ class PenjualanController extends Controller
         $produk = Produk::all();
         $nota = date('ymd') . $jumlah;
         $pelanggan = Pelanggan::all();
-        return view('penjualan.transaksi', compact('produk', 'penjualan', 'pelanggan', 'tanggal', 'jumlah', 'nota', 'PelangganID'));
+        $detail = DetailPenjualan::select('detail_penjualans.*', 'produks.*')
+        ->leftJoin('produks', 'detail_penjualans.ProdukID', '=', 'produks.ProdukID')
+        ->where('detail_penjualans.KodePenjualan', $nota)
+        ->get();
+
+        return view('penjualan.transaksi', compact('produk', 'penjualan', 'pelanggan', 'tanggal', 'jumlah', 'nota','detail', 'PelangganID'));
     }
     
     public function tambahkeranjang(Request $request, $PelangganID) {
         $produk = Produk::where('ProdukID', $request->produk_id)->first();
-    
-        // Check if $produk is not null before accessing its properties
         if ($produk) {
             $harga = $produk->Harga;
             $stok_lama = $produk->Stok;
@@ -49,23 +52,19 @@ class PenjualanController extends Controller
             ];
     
             DetailPenjualan::create($data);
-    
             $data2 = [
                 'Stok' => $stok_sekarang,
             ];
     
             $where = ['ProdukID' => $request->produk_id];
-    
             Produk::where($where)->update($data2);
-    
             $penjualan = Penjualan::with('detailPenjualans')->where('PelangganID', $PelangganID)->get();
-    
             return redirect()->route('transaksi', ['PelangganID' => $PelangganID])->with(compact('penjualan'))->with('success', 'Data produk berhasil ditambah');
         } else {
-            // Handle the case where $produk is null, for example, redirect with an error message.
             return redirect()->route('transaksi', ['PelangganID' => $PelangganID])->with('error', 'Produk not found');
         }
     }
+
     
 
 }    

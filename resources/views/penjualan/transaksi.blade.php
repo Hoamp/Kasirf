@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <label class="form-label">Nama pelanggan</label>
-                        {{-- <input type="text" class="form-control" value="{{ $pelanggan->find($PelangganID)->NamaPelanggan }}" readonly> --}}
+                        {{-- <input type="hidden" class="form-control" name="PelangganID" value="{{ $PelangganID ->NamaPelanggan}}" readonly> --}}
                     </div>
                 <div class="modal-footer">
                 <button type="submit" class="btn btn-primary mt-2">Save changes</button>
@@ -74,25 +74,22 @@
               </tr>
           </thead>
           <tbody>
-            @forelse ($penjualan as $penjualanItem)
-            @foreach ($penjualanItem->detailProduks as $index => $detailProduk)
+            @forelse ($detail as $item)          
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $detailProduk->produk->KodeProduk }}</td>
-                    <td>{{ $detailProduk->produk->NamaProduk }}</td>
-                    <td>{{ $detailProduk->Jumlah }}</td>
-                    <td>{{ $detailProduk->produk->Harga }}</td>
-                    <td>{{ $detailProduk->Jumlah * $detailProduk->produk->Harga }}</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $item->KodeProduk }}</td>
+                    <td>{{ $item->NamaProduk }}</td>
+                    <td>{{ $item->Jumlah }}</td>
+                    <td>{{ $item->Harga }}</td>
+                    <td>{{ $item->Jumlah * $item->Harga }}</td>
                     <td>
-                        <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $penjualanItem->PelangganID) }}" method="POST">
+                        <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">HAPUS</button>
-                            <a href="{{ route('editpelanggan', $penjualanItem->PelangganID)}}" class="btn btn-primary">EDIT</a>
                         </form>
                     </td>
                 </tr>
-            @endforeach
               @empty
                   <tr>
                       <td colspan="7" class="text-center">
