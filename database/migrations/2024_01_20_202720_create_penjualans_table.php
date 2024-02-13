@@ -12,10 +12,10 @@ return new class extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->id('PenjualanID');
+            $table->unsignedBigInteger('KodePenjualan');
             $table->date('TanggalPenjualan');
             $table->decimal('TotalHarga', 10, 2);
             $table->unsignedBigInteger('PelangganID');
-            // $table->foreign('PelangganID', 'fk_penjualans_pelangganid')->references('PelangganID')->on('pelanggans');
             $table->timestamps();
         });
     }
