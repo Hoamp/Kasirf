@@ -12,12 +12,16 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password', 'level');
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required|min:6',
+        ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard'); 
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard'); 
         }
-        return redirect()->route('login')->with('error', 'Login failed. Check your credentials.');
+        return back()->with('error', 'Login failed. Check your credentials.');
     }
 
     public function logout()

@@ -46,7 +46,7 @@
                 </form>      
                 @if(session('success'))
                     <div class="alert alert-success">
-                        {{ session('success') }}
+                        {{ session('success') }} 
                     </div>
                 @elseif(session('error'))
                     <div class="alert alert-danger">
