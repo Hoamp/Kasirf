@@ -79,7 +79,7 @@
         <th scope="col">No Nota</th>
         <th scope="col">Nominal</th>
         <th scope="col">Pelanggan</th>
-        <th scope="col">Daftar Produk</th>
+        {{-- <th scope="col">Daftar Produk</th> --}}
         <th scope="col">Aksi</th>
 
       </tr>
@@ -89,16 +89,12 @@
         @forelse ($penjualan as $item)          
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $item->KodePenjualan }}</td>
-            <td>{{ $item->TotalHarga }}</td>
-            <td>{{ $item->PelangganID }}</td>
-            <td></td>
+            <td>{{ rupiah($item->TotalHarga) }}</td>
+            <td>{{ $item->NamaPelanggan }}</td>
             <td class="center">
-            {{-- <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete_pelanggan', $item->PelangganID) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">HAPUS</button>
-            </form> --}}
-            <a href="{{ route('nota', $item->PenjualanID)}}" class="btn btn-primary">EDIT</a>
+                <form action="{{ route('invoice', $item->KodePenjualan) }}">
+                    <button class="btn btn-primary">CEK</button>
+                </form>
             </td>
         </tr>
         @empty
