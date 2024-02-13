@@ -19,10 +19,12 @@ use App\Http\Controllers\PenjualanController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('/', function () {
+        return view('index');
+    });
+
     Route::controller(PenggunaController::class)->group(function(){
         Route::get('/dashboard','dashboard')->name('dashboard');
         Route::get('/pengguna','index')->name('pengguna');
@@ -54,12 +56,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/penjualan','index')->name('penjualan');
         Route::get('/transaksi/{PelangganID}','transaksi')->name('transaksi');
         Route::post('/tambahkeranjang/{PelangganID}','tambahkeranjang')->name('tambahkeranjang');
+        Route::delete('/hapus/{DetailID}/{ProdukID}','hapus')->name('hapus');
+        Route::post('/bayar/{KodePenjualan}','bayar')->name('bayar');
+        Route::get('/invoice/{KodePenjualan}','invoice')->name('invoice');
     });
     
 });
-
 Route::controller(AuthController::class)->group(function(){
- 
     Route::get('/login','showLogin')->name('login');
     Route::post('/login','login');
     Route::get('/logout','logout')->name('logout');

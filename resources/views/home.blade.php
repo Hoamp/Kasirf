@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kasir | @yield('title')</title>
   @include('partials/css')
+ 
 </head>
 
 <body>

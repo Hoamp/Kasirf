@@ -72,7 +72,7 @@
             <td>{{ $item->username }}</td>
             <td>{{ $item->level }}</td>
             <td class="center">
-              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete', $item->id) }}"" method="POST">
+              <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')" action="{{ route('delete', $item->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">HAPUS</button>

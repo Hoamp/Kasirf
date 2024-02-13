@@ -38,6 +38,8 @@
               <span class="hide-menu">Produk</span>
             </a>
           </li>
+          
+          @if (auth()->user()->level=='Kasir')
           <li class="sidebar-item">
             <a class="sidebar-link" href="/pelanggan" aria-expanded="false">
               <span>
@@ -55,13 +57,14 @@
             </a>
           </li>
         
+          @endif
           
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">AUTH</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <a class="sidebar-link" href="/login" aria-expanded="false">
               <span>
                 <i class="ti ti-login"></i>
               </span>
