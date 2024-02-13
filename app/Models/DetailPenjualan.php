@@ -17,7 +17,7 @@ class DetailPenjualan extends Model
         'Jumlah',
         'Subtotal',
     ];
-    public function produk()
+    public function produks()
     {
         return $this->belongsTo(Produk::class, 'ProdukID');
     }
