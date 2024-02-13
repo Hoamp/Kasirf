@@ -15,4 +15,8 @@ class Pelanggan extends Model
         'NomorTelepon',
     ];
     protected $table = 'pelanggans';
+    public function penjualans()
+    {
+        return $this->hasMany(Penjualan::class, 'PelangganID');
+    }
 }
